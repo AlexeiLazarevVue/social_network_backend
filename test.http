@@ -1,0 +1,7 @@
+POST http://127.0.0.1:3000/user/join
+Content-Type: application/json
+
+{
+  "email": "me@davidhaker.ru",
+  "password": "123123123123"
+}
