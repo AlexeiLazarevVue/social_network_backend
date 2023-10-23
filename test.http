@@ -1,7 +1,34 @@
+### User / Register
 POST http://127.0.0.1:3000/user/join
 Content-Type: application/json
 
 {
-  "email": "me@davidhaker.ru",
+  "email": "me@davidhaker.er",
   "password": "123123123123"
+}
+
+
+### User / Confirm email after registration
+POST http://127.0.0.1:3000/user/confirm-email
+Content-Type: application/x-www-form-urlencoded
+
+token=TIDhs7Q9aW2_D81ZP7ssy69KjNoS.AWt9WMn6vtRknb7neQ8L9OaKFbg3H36MGAU
+
+
+### User / Login
+POST http://127.0.0.1:3000/user/login
+Content-Type: application/json
+
+{
+  "email": "me@davidhaker.er",
+  "password": "123123123123-"
+}
+
+### User / Set new password
+POST http://127.0.0.1:3000/user/set-new-password
+Content-Type: application/json
+Authorization: Token CKRnm94nhEr4dTXYhlgQpUrm689UDYN77BOzaDI26lJeav5lbLOJbEDQFWpeWc28
+
+{
+  "password": "123123123123-"
 }
