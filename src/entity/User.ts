@@ -1,6 +1,8 @@
 import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm"
 import md5 from "md5";
 import {UserToken, UserTokenType} from "./UserToken";
+import {Friend} from "./Friend";
+import {FriendRequest} from "./FriendRequest";
 
 
 @Entity()
@@ -20,6 +22,15 @@ export class User extends BaseEntity {
     @OneToMany(type => UserToken, userToken => userToken.user)
     tokens: UserToken[]
 
+    @OneToMany(type => Friend, friend => friend.user)
+    friends: Friend[]
+
+    @OneToMany(type => FriendRequest, friendRequest => friendRequest.fromUser)
+    friendOutgoingRequests: FriendRequest[]
+
+    @OneToMany(type => FriendRequest, friendRequest => friendRequest.toUser)
+    friendIncomingRequests: FriendRequest[]
+
     /**
      * Возвращает хэшированный пароль для хранения в базе
      * @param password
@@ -28,4 +39,3 @@ export class User extends BaseEntity {
         return md5(password);
     }
 }
-
