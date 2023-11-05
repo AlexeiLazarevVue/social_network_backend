@@ -14,7 +14,7 @@ function generateToken(length: number) {
     const ALPHABET = '0123456789qazwsxedcrfvtgbyhnujmikolpQAZWSXEDCRFVTGBYHNUJMIKOLP_.'
 
     for (let i = 0; i < length; i++)
-        str += ALPHABET[Math.round(Math.random() * ALPHABET.length - 1)]
+        str += ALPHABET[Math.round(Math.random() * (ALPHABET.length - 1))]
 
     return str
 }

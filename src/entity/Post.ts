@@ -2,21 +2,20 @@ import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColum
 import {User} from "./User";
 
 @Entity()
-export class Friend extends BaseEntity {
+export class Post extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
     userId: number
 
-    @ManyToOne(type => User, user => user.friends, {cascade: true, eager: true})
+    @ManyToOne(type => User, user => user.posts, {cascade: true, eager: true})
     @JoinColumn({name: 'userId'})
     user: User
 
     @Column()
-    targetUserId: number
+    content: string
 
-    @ManyToOne(type => User, null, {cascade: true, eager: true})
-    @JoinColumn({name: 'targetUserId'})
-    targetUser: User
+    @Column()
+    createdAt: string
 }

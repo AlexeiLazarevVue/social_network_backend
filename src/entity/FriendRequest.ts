@@ -1,8 +1,8 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "./User";
 
 @Entity()
-export class FriendRequest {
+export class FriendRequest extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -14,9 +14,9 @@ export class FriendRequest {
     fromUser: User
 
     @Column()
-    toUserId: number
+    targetUserId: number
 
     @ManyToOne(type => User, user => user.friendIncomingRequests, {cascade: true, eager: true})
-    @JoinColumn({name: 'fromUserId'})
-    toUser: User
+    @JoinColumn({name: 'targetUserId'})
+    targetUser: User
 }

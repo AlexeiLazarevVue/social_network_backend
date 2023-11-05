@@ -2,21 +2,24 @@ import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColum
 import {User} from "./User";
 
 @Entity()
-export class Friend extends BaseEntity {
+export class Message extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
+    content: string
+
+    @Column()
     userId: number
 
-    @ManyToOne(type => User, user => user.friends, {cascade: true, eager: true})
+    @ManyToOne(type => User, user => user.outgoingMessages, {cascade: true, eager: true})
     @JoinColumn({name: 'userId'})
     user: User
 
     @Column()
     targetUserId: number
 
-    @ManyToOne(type => User, null, {cascade: true, eager: true})
+    @ManyToOne(type => User, user => user.incomingMessages, {cascade: true, eager: true})
     @JoinColumn({name: 'targetUserId'})
     targetUser: User
 }

@@ -2,7 +2,6 @@ import "reflect-metadata"
 import {NestFactory} from '@nestjs/core';
 import {Logger, ValidationPipe} from "@nestjs/common";
 import {AppModule} from './app.module';
-import {dataSource} from "./data-source"
 
 
 declare const module: any;
@@ -13,13 +12,6 @@ declare const module: any;
     const app = await NestFactory.create(AppModule)
 
     app.useGlobalPipes(new ValidationPipe())
-
-    try {
-        await dataSource.initialize()
-        logger.log('Database successfully initialized')
-    } catch (e) {
-        logger.error(`DB initialization failed: ${e}`)
-    }
 
     await app.listen(3000);
 
